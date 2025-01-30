@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;700&display=swap');
+        
+        body {
+            font-family: 'Prompt', sans-serif;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        .sparkle {
+            animation: sparkle 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translate(0, 0px); }
+            50% { transform: translate(0, 15px); }
+            100% { transform: translate(0, 0px); }
+        }
+        
+        @keyframes sparkle {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(180deg); }
+            100% { transform: scale(1) rotate(360deg); }
+        }
+        
+        .heart {
+            animation: heart 2s ease-in-out infinite;
+        }
+        
+        @keyframes heart {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .glitter {
+            background: linear-gradient(120deg, #ff69b4, #da70d6, #ff69b4);
+            background-size: 200% 200%;
+            animation: glitter 2s linear infinite;
+        }
+        
+        @keyframes glitter {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-pink-100 via-purple-100 to-pink-200 min-h-screen flex flex-col items-center justify-center overflow-hidden relative">
+    <!-- Decorative elements -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-0 left-0 w-32 h-32 text-6xl floating" style="animation-delay: 0s;">🌸</div>
+        <div class="absolute top-20 right-20 w-32 h-32 text-6xl floating" style="animation-delay: 0.5s;">🎀</div>
+        <div class="absolute bottom-20 left-20 w-32 h-32 text-6xl floating" style="animation-delay: 1s;">💝</div>
+        <div class="absolute bottom-0 right-0 w-32 h-32 text-6xl floating" style="animation-delay: 1.5s;">🌺</div>
+    </div>
+
+    <!-- Birthday Card -->
+    <div class="max-w-md w-full bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-8 m-4 relative z-10 transform hover:scale-105 transition-transform duration-300 border-4 border-pink-200">
+        <!-- Profile Image -->
+        <div class="w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden border-8 border-pink-300 floating shadow-xl">
+            <img src="/api/placeholder/200/200" alt="Birthday Girl" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Birthday Message -->
+        <div class="text-center space-y-4">
+            <div class="glitter text-4xl font-bold mb-4 bg-clip-text text-transparent p-2 rounded-lg">
+                สุขสันต์วันเกิด! ✨
+            </div>
+            <p class="text-gray-700 text-lg mb-6" id="wishMessage">
+                ขอให้วันพิเศษนี้เต็มไปด้วยความสุข<br>
+                ความสำเร็จ และรอยยิ้มที่สดใส 💖
+            </p>
+        </div>
+
+        <!-- Cake with Hearts -->
+        <div class="text-center mb-6 relative">
+            <span class="text-7xl heart">🎂</span>
+            <span class="absolute -top-4 left-1/4 text-2xl sparkle">💖</span>
+            <span class="absolute -top-4 right-1/4 text-2xl sparkle" style="animation-delay: 0.5s;">💖</span>
+        </div>
+
+        <!-- Blow Candle Button -->
+        <button id="blowCandle" class="w-full bg-gradient-to-r from-pink-400 to-purple-400 hover:from-pink-500 hover:to-purple-500 text-white py-4 px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-bold text-lg">
+            เป่าเทียนขอพร 🌟
+        </button>
+    </div>
+</body>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    let isBlown = false;
+    const blowButton = document.getElementById('blowCandle');
+    
+    const createSparkles = () => {
+        const emojis = ['✨', '💫', '⭐', '🌟', '💖', '🎀'];
+        const sparkle = document.createElement('div');
+        sparkle.className = 'absolute text-2xl';
+        sparkle.style.left = `${Math.random() * 100}%`;
+        sparkle.style.top = `${Math.random() * 100}%`;
+        sparkle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        document.body.appendChild(sparkle);
+
+        gsap.to(sparkle, {
+            y: -100,
+            x: (Math.random() - 0.5) * 200,
+            opacity: 0,
+            duration: 2,
+            ease: 'power2.out',
+            onComplete: () => sparkle.remove()
+        });
+    };
+
+    blowButton.addEventListener('click', () => {
+        if (!isBlown) {
+            // Card animation
+            gsap.to('.card', {
+                scale: 1.1,
+                duration: 0.3,
+                yoyo: true,
+                repeat: 1
+            });
+
+            // Change messages
+            document.getElementById('wishMessage').innerHTML = `
+                ขอให้ชีวิตสดใสเหมือนดอกไม้ที่บาน 🌸<br>
+                มีความสุขในทุกๆ วัน 💝<br>
+                สมหวังในทุกสิ่งที่ปรารถนา ✨
+            `;
+            
+            // Create sparkle effects
+            for(let i = 0; i < 30; i++) {
+                setTimeout(() => createSparkles(), i * 100);
+            }
+            
+            isBlown = true;
+            blowButton.innerHTML = 'คำอวยพรของคุณจะเป็นจริง! 🌟';
+            blowButton.classList.add('bg-gradient-to-r', 'from-purple-400', 'to-pink-400');
+            blowButton.disabled = true;
+        }
+    });
+
+    // Create initial sparkles
+    setInterval(() => {
+        if (Math.random() > 0.7) createSparkles();
+    }, 2000);
+});
+</script>
+</html>
