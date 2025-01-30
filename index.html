@@ -55,42 +55,61 @@
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-pink-100 via-purple-100 to-pink-200 min-h-screen flex flex-col items-center justify-center overflow-hidden relative">
-    <!-- Decorative elements -->
+<body class="bg-gradient-to-br from-pink-100 via-purple-100 to-pink-200 min-h-screen flex flex-col items-center justify-center overflow-hidden relative p-4">
+    <!-- Decorative elements - Responsive positioning -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
-        <div class="absolute top-0 left-0 w-32 h-32 text-6xl floating" style="animation-delay: 0s;">🌸</div>
-        <div class="absolute top-20 right-20 w-32 h-32 text-6xl floating" style="animation-delay: 0.5s;">🎀</div>
-        <div class="absolute bottom-20 left-20 w-32 h-32 text-6xl floating" style="animation-delay: 1s;">💝</div>
-        <div class="absolute bottom-0 right-0 w-32 h-32 text-6xl floating" style="animation-delay: 1.5s;">🌺</div>
+        <!-- Very Small (vs) and Small (sm) screens -->
+        <div class="sm:block hidden">
+            <div class="absolute top-0 left-0 w-16 h-16 text-4xl floating" style="animation-delay: 0s;">🌸</div>
+            <div class="absolute top-10 right-10 w-16 h-16 text-4xl floating" style="animation-delay: 0.5s;">🎀</div>
+            <div class="absolute bottom-10 left-10 w-16 h-16 text-4xl floating" style="animation-delay: 1s;">💝</div>
+            <div class="absolute bottom-0 right-0 w-16 h-16 text-4xl floating" style="animation-delay: 1.5s;">🌺</div>
+        </div>
+        
+        <!-- Medium (md) screens -->
+        <div class="hidden md:block lg:hidden">
+            <div class="absolute top-0 left-0 w-24 h-24 text-5xl floating" style="animation-delay: 0s;">🌸</div>
+            <div class="absolute top-16 right-16 w-24 h-24 text-5xl floating" style="animation-delay: 0.5s;">🎀</div>
+            <div class="absolute bottom-16 left-16 w-24 h-24 text-5xl floating" style="animation-delay: 1s;">💝</div>
+            <div class="absolute bottom-0 right-0 w-24 h-24 text-5xl floating" style="animation-delay: 1.5s;">🌺</div>
+        </div>
+        
+        <!-- Large (lg) screens -->
+        <div class="hidden lg:block">
+            <div class="absolute top-0 left-0 w-32 h-32 text-6xl floating" style="animation-delay: 0s;">🌸</div>
+            <div class="absolute top-20 right-20 w-32 h-32 text-6xl floating" style="animation-delay: 0.5s;">🎀</div>
+            <div class="absolute bottom-20 left-20 w-32 h-32 text-6xl floating" style="animation-delay: 1s;">💝</div>
+            <div class="absolute bottom-0 right-0 w-32 h-32 text-6xl floating" style="animation-delay: 1.5s;">🌺</div>
+        </div>
     </div>
 
-    <!-- Birthday Card -->
-    <div class="max-w-md w-full bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-8 m-4 relative z-10 transform hover:scale-105 transition-transform duration-300 border-4 border-pink-200">
-        <!-- Profile Image -->
-        <div class="w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden border-8 border-pink-300 floating shadow-xl">
+    <!-- Birthday Card - Responsive sizing -->
+    <div class="w-full max-w-[320px] sm:max-w-sm md:max-w-md lg:max-w-lg bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-4 sm:p-6 md:p-8 m-2 sm:m-4 relative z-10 transform hover:scale-105 transition-transform duration-300 border-4 border-pink-200">
+        <!-- Profile Image - Responsive sizing -->
+        <div class="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto mb-4 sm:mb-6 rounded-full overflow-hidden border-4 sm:border-6 md:border-8 border-pink-300 floating shadow-xl">
             <img src="/api/placeholder/200/200" alt="Birthday Girl" class="w-full h-full object-cover">
         </div>
 
-        <!-- Birthday Message -->
-        <div class="text-center space-y-4">
-            <div class="glitter text-4xl font-bold mb-4 bg-clip-text text-transparent p-2 rounded-lg">
+        <!-- Birthday Message - Responsive text sizing -->
+        <div class="text-center space-y-2 sm:space-y-3 md:space-y-4">
+            <div class="glitter text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3 md:mb-4 bg-clip-text text-transparent p-2 rounded-lg">
                 สุขสันต์วันเกิด! ✨
             </div>
-            <p class="text-gray-700 text-lg mb-6" id="wishMessage">
+            <p class="text-gray-700 text-base sm:text-lg md:text-xl mb-4 sm:mb-5 md:mb-6" id="wishMessage">
                 ขอให้วันพิเศษนี้เต็มไปด้วยความสุข<br>
                 ความสำเร็จ และรอยยิ้มที่สดใส 💖
             </p>
         </div>
 
-        <!-- Cake with Hearts -->
-        <div class="text-center mb-6 relative">
-            <span class="text-7xl heart">🎂</span>
-            <span class="absolute -top-4 left-1/4 text-2xl sparkle">💖</span>
-            <span class="absolute -top-4 right-1/4 text-2xl sparkle" style="animation-delay: 0.5s;">💖</span>
+        <!-- Cake with Hearts - Responsive sizing -->
+        <div class="text-center mb-4 sm:mb-5 md:mb-6 relative">
+            <span class="text-5xl sm:text-6xl md:text-7xl heart">🎂</span>
+            <span class="absolute -top-2 sm:-top-3 md:-top-4 left-1/4 text-xl sm:text-2xl sparkle">💖</span>
+            <span class="absolute -top-2 sm:-top-3 md:-top-4 right-1/4 text-xl sm:text-2xl sparkle" style="animation-delay: 0.5s;">💖</span>
         </div>
 
-        <!-- Blow Candle Button -->
-        <button id="blowCandle" class="w-full bg-gradient-to-r from-pink-400 to-purple-400 hover:from-pink-500 hover:to-purple-500 text-white py-4 px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-bold text-lg">
+        <!-- Blow Candle Button - Responsive sizing -->
+        <button id="blowCandle" class="w-full bg-gradient-to-r from-pink-400 to-purple-400 hover:from-pink-500 hover:to-purple-500 text-white py-3 sm:py-3.5 md:py-4 px-4 sm:px-5 md:px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-bold text-base sm:text-lg">
             เป่าเทียนขอพร 🌟
         </button>
     </div>
@@ -104,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const createSparkles = () => {
         const emojis = ['✨', '💫', '⭐', '🌟', '💖', '🎀'];
         const sparkle = document.createElement('div');
-        sparkle.className = 'absolute text-2xl';
+        sparkle.className = 'absolute text-xl sm:text-2xl';
         sparkle.style.left = `${Math.random() * 100}%`;
         sparkle.style.top = `${Math.random() * 100}%`;
         sparkle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
@@ -130,11 +149,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 repeat: 1
             });
 
-            // Change messages
+            // Change messages with responsive text
             document.getElementById('wishMessage').innerHTML = `
-                ขอให้ชีวิตสดใสเหมือนดอกไม้ที่บาน 🌸<br>
-                มีความสุขในทุกๆ วัน 💝<br>
-                สมหวังในทุกสิ่งที่ปรารถนา ✨
+                <span class="text-base sm:text-lg md:text-xl">
+                    ขอให้ชีวิตสดใสเหมือนดอกไม้ที่บาน 🌸<br>
+                    มีความสุขในทุกๆ วัน 💝<br>
+                    สมหวังในทุกสิ่งที่ปรารถนา ✨
+                </span>
             `;
             
             // Create sparkle effects
@@ -149,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Create initial sparkles
+    // Create initial sparkles - Adjusted for responsive
     setInterval(() => {
         if (Math.random() > 0.7) createSparkles();
     }, 2000);
